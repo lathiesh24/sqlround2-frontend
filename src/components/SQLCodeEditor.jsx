@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Editor from '@monaco-editor/react';
 
-function SQLCodeEditor() {
-  const [sqlQuery, setSqlQuery] = useState(''); 
+const backendURL = 'http://localhost:8181/api/teams/query-answers'; 
 
-  const handleEditorDidMount = (editor, monaco) => {
-    // You can customize the editor here if needed
-  };
+const SQLCodeEditor = () => {
+  const [sqlQuery, setSqlQuery] = useState('');
+  const teamName = 'TeamA'; 
+  const questionNumber = '1';
 
-  const handleSaveQuery = () => {
-    // Here, you can console log the SQL query or send it to the database
-    console.log('SQL Query:', sqlQuery);
-    
-    // If you want to send it to a database, you would typically use an API call here.
-    // Example using fetch:
-    /*
-    fetch('/your-database-endpoint', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query: sqlQuery }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Query saved:', data);
-      })
-      .catch(error => {
-        console.error('Error saving query:', error);
-      });
-    */
+  const handleSaveQuery = async () => {
+    try {
+      const sqlAnswer = sqlQuery;
+
+
+      const response = await axios.get(`${backendURL}/${teamName}/${questionNumber}`);
+
+      if (response.data) {
+        const recordId = response.data._id;
+        const updatedResponse = await axios.put(`${backendURL}/${recordId}`, { sqlAnswer });
+        console.log('SQL Query updated:', updatedResponse.data);
+      } else {
+        const newResponse = await axios.post(backendURL, {
+          teamName,
+          questionNumber,
+          sqlAnswer,
+        });
+        console.log('New SQL Query saved:', newResponse.data);
+      }
+    } catch (error) {
+      console.error('Error saving/updating SQL query:', error);
+    }
   };
 
   return (
@@ -37,8 +38,8 @@ function SQLCodeEditor() {
       <Editor
         height="500px"
         language="sql"
-        theme="vs-dark" 
-        value={sqlQuery} 
+        theme="vs-dark"
+        value={sqlQuery}
         onChange={(value) => setSqlQuery(value)}
         options={{
           wordWrap: 'on',
@@ -47,14 +48,15 @@ function SQLCodeEditor() {
             horizontal: 'auto',
           },
         }}
-        editorDidMount={handleEditorDidMount}
       />
-      <button 
-      className='p-3 border min-w-32 bg-slate-600 text-white mt-4 font-medium'
-      onClick={handleSaveQuery}
-      >Save Query</button>
+      <button
+        className="p-3 border min-w-32 bg-slate-600 text-white mt-4 font-medium"
+        onClick={handleSaveQuery}
+      >
+        Save Query
+      </button>
     </div>
   );
-}
+};
 
 export default SQLCodeEditor;

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SQLCodeEditor from './SQLCodeEditor';
+import Editor from '@monaco-editor/react';
 
 const QuizSection = () => {
 
@@ -38,94 +38,81 @@ const QuizSection = () => {
           }
     ]; 
 
-    const navigate = useNavigate();
-    const [currentQuestionIndex , setCurrentQuestionIndex] = useState(0);
-    const [selectedAnswers, setSelectedAnswers] = useState(Array(questions.length).fill(null));
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const navigate = useNavigate();
+  const teamName = localStorage.getItem('teamName');
+  const totalQuestions = questions.length;
 
-    const handleAnswerClick = (index) => {
-        setSelectedAnswers((prevSelectedAnswers) => {
-            const updatedAnswers = [...prevSelectedAnswers];
-            updatedAnswers[currentQuestionIndex] = index;
-            return updatedAnswers;
-        });
-
-        if (currentQuestionIndex < questions.length - 1) {
-            setCurrentQuestionIndex(currentQuestionIndex + 1);
-        } 
-    };
-    
-
-    const  teamName  = localStorage.getItem('teamName');
-
-    const totalQuestions = questions.length;
-
-    const ProgressBar = () => {
-        const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
-        return (
-         <div className='flex justify-center'>
-            <div className="w-5/6 h-4 bg-gray-200 ">
-            <div className={`h-full bg-violet-500 transition-all duration-300`} style={{ width: `${progress}%` }}></div>
-            </div>
+  const ProgressBar = () => {
+    const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+    return (
+      <div className='flex justify-center'>
+        <div className="w-5/6 h-4 bg-gray-200 ">
+          <div className={`h-full bg-violet-500 transition-all duration-300`} style={{ width: `${progress}%` }}></div>
         </div>
-        
-        );
-      };
+      </div>
+    );
+  };
 
-     const nextQuestion = () => {
-            if (currentQuestionIndex < questions.length - 1) {
-                setCurrentQuestionIndex(currentQuestionIndex + 1);
-            }
-         else {
-            alert("Please select an answer before moving to the next question.");
-        }
-    }
+  const backendURL = 'http://localhost:8181/api/teams/query-answers';
 
-    const previousQuestion = ()=>{
-        if (currentQuestionIndex >= 1){
-            setCurrentQuestionIndex(currentQuestionIndex - 1);
-        } else {
-            alert("You cannot go back")
-        }
+  const [sqlQuery, setSqlQuery] = useState('');
+
+  const handleNextQuestion = async () => {
+    try {
+      await axios.post(backendURL, {
+        teamName,
+        questionNumber: currentQuestionIndex + 1,
+        sqlAnswer: sqlQuery,
+      });
+
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setSqlQuery(''); 
+      } else {
+        alert('You have completed all questions.'); 
+        navigate("/thankyou");
+      }
+    } catch (error) {
+      console.error('Error saving SQL query:', error.message);
     }
+  };
 
   return (
     <div>
+      <div>
+        <div><ProgressBar/></div>
+        <div className='mt-12 flex justify-center'>
+          Question Number: {currentQuestionIndex + 1}
+        </div>
+        <div className='mt-12 flex justify-center'>
+          {questions[currentQuestionIndex].question}
+        </div>
         <div>
-            <div><ProgressBar/></div>
-            <div
-             className='mt-12 flex justify-center'
-             >
-                Question Number : {currentQuestionIndex + 1
-            }</div>
-            <div
-            className='mt-12 flex justify-center'
-            >
-                {questions[currentQuestionIndex].question}
-            </div>
-            <div>
-                <SQLCodeEditor/>
-            </div>
+          <Editor
+            height="500px"
+            language="sql"
+            theme="vs-dark"
+            value={sqlQuery}
+            onChange={(value) => setSqlQuery(value)}
+            options={{
+              wordWrap: 'on',
+              automaticLayout: true,
+              scrollbar: {
+                horizontal: 'auto',
+              },
+            }}
+          />
+          <button
+            className="p-3 border min-w-32 bg-slate-600 text-white mt-4 font-medium"
+            onClick={handleNextQuestion}
+          >
+            Next
+          </button>
         </div>
-        <div className='flex flex-row mt-32 gap-24 justify-center items-center mb-12' >
-        { currentQuestionIndex === questions.length - 1 ? 
-        (<div 
-        className='bg-violet-600 p-2 w-32 flex justify-center items-center text-white cursor-pointer text-2xl'
-        onClick={()=>{}}>
-          Submit 
-        </div>) : 
-        (<div 
-        className='bg-violet-600 p-2 w-32 flex justify-center items-center text-white cursor-pointer text-xl'
-        onClick={nextQuestion}>
-          Next
-        </div>) }
-        <div 
-        className='bg-violet-600 p-2 w-32 flex justify-center items-center text-white cursor-pointer text-xl'
-        onClick={previousQuestion}>
-            Back
-        </div>
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default QuizSection
+export default QuizSection;

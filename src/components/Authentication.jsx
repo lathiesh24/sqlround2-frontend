@@ -20,7 +20,7 @@ const Authentication = () => {
             };
 
             try {
-                const response = await axios.post('https://sqlr1-backend.onrender.com/api/teams', data, {
+                const response = await axios.post('http://localhost:8181/api/teams', data, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
