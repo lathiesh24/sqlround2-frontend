@@ -53,9 +53,9 @@ const QuizSection = () => {
   const ProgressBar = () => {
     const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
     return (
-      <div className='flex justify-center'>
+      <div className='flex justify-center mt-8'>
         <div className="w-5/6 h-4 bg-gray-200 ">
-          <div className={`h-full bg-violet-500 transition-all duration-300`} style={{ width: `${progress}%` }}></div>
+          <div className={`h-full bg-black rounded-md transition-all duration-300`} style={{ width: `${progress}%` }}></div>
         </div>
       </div>
     );
