@@ -8,7 +8,7 @@ const QuizSection = () => {
   const questions = [ 
     {
       question: "Write an SQL query to find the position of the alphabet 'g' in the username column 'Debangana' from the Users table.",
-      images: ["Genres.png,Books_Genres.png"]
+      images: ["Genres.png","Books_Genres.png"]
     },
     {
       question: "Write an SQL query to print username and book title for which the return month is April 2023.",
@@ -16,7 +16,7 @@ const QuizSection = () => {
     },
     {
       question: "Write a SQL query to print the name from the Authors table after replacing ‘h’ with ‘H’.",
-      images: ["Books.png,Users.png"]
+      images: ["Books.png","Users.png"]
     },
     {
       question: "Write a query to find the books that are currently available (not checked out) in the library.",
@@ -28,19 +28,19 @@ const QuizSection = () => {
     },
     {
       question: "Identify the users who have a history of returning books late more than 80% of the time, and list their usernames.",
-      images: ["Users.png, Checkouts.png"]
+      images: ["Users.png","Checkouts.png"]
     },
     {
       question: "List all the books that are currently checked out and overdue, along with the names of the users who have them.",
-      images: ["Books.png.png , Users.png"]
+      images: ["Books.png.png","Users.png"]
     },
     {
       question: "Find the author whose books have been checked out the most in the last year.",
-      images: ["Authors.png, Books.png , Checkouts.png"]
+      images: ["Authors.png", "Books.png" , "Checkouts.png"]
     },
     {
       question: "Determine the top 3 book genres with the number of checkouts, considering books published in the last 3 years.",
-      images: ["Genres.png,Books_Genres.png,Checkouts.png"]
+      images: ["Genres.png","Books_Genres.png","Checkouts.png"]
     }
   ];
   
