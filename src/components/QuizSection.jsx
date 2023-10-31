@@ -10,24 +10,6 @@ const QuizSection = () => {
             question: "Create the Library database with appropriate keys."
           },
           {
-            question: "Write an SQL query to find the position of the alphabet 'g' in the username column 'Debangana' from the Users table."
-          },
-          {
-            question: "Write an SQL query to print username and book title for which the return month is April 2023."
-          },
-          {
-            question: "Write an SQL query to print the name from the Authors table after replacing ‘h’ with ‘H’."
-          },
-          {
-            question: "Write a query to find the books that are currently available (not checked out) in the library."
-          },
-          {
-            question: "Determine the top 3 authors with the most books checked out, along with the number of checkouts for each author."
-          },
-          {
-            question: "Identify the users who have a history of returning books late more than 80% of the time, and list their usernames."
-          },
-          {
             question: "List all the books that are currently checked out and overdue, along with the names of the users who have them."
           },
           {
@@ -58,20 +40,30 @@ const QuizSection = () => {
 
   const [sqlQuery, setSqlQuery] = useState('');
 
+  const [allAnswers, setAllAnswers] = useState(Array(questions.length).fill('')); 
+
   const handleNextQuestion = async () => {
+    const updatedAnswers = [...allAnswers];
+    updatedAnswers[currentQuestionIndex] = sqlQuery; 
+
+    const postData = {
+      teamName: teamName,
+      answers: updatedAnswers.map((sqlAnswer, idx) => ({
+        questionNumber: idx + 1,
+        sqlAnswer: sqlAnswer,
+      })),
+    };
+
     try {
-      await axios.post(backendURL, {
-        teamName,
-        questionNumber: currentQuestionIndex + 1,
-        sqlAnswer: sqlQuery,
-      });
+      await axios.post(backendURL, postData);
 
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setSqlQuery(''); 
+        setSqlQuery(''); // Clear the SQL query
+        setAllAnswers(updatedAnswers); // Update all answers with the new one
       } else {
-        alert('You have completed all questions.'); 
-        navigate("/thankyou");
+        alert('You have completed all questions.');
+        navigate('/thankyou');
       }
     } catch (error) {
       console.error('Error saving SQL query:', error.message);
@@ -107,7 +99,7 @@ const QuizSection = () => {
             className="p-3 border min-w-32 bg-slate-600 text-white mt-4 font-medium"
             onClick={handleNextQuestion}
           >
-            Next
+            Submit Query
           </button>
         </div>
       </div>
