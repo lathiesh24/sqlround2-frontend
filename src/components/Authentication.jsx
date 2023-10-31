@@ -46,12 +46,12 @@ const Authentication = () => {
 
     return (
         <div>
-            <div className='h-screen flex justify-center items-center'>
-                <form className='border-2  w-[500px] h-[450px] p-8 flex-col' onSubmit={handleClick}>
+            <div className='h-screen flex justify-center items-center -mt-16'>
+                <form className='border-2  w-[400px] h-[376px] p-8 flex-col bg-white shadow-sm rounded-md' onSubmit={handleClick}>
                     <div className='flex flex-col mt-2'>
                         <label className='font-medium text-xl'>Name</label>
                         <input
-                            className='mt-2 pt-2 flex justify-center items-center outline-none border-b-2'
+                            className='mt-2  flex justify-center items-center outline-none border-b-2'
                             placeholder='Enter Your Name'
                             type='text'
                             required
@@ -63,7 +63,7 @@ const Authentication = () => {
                     <div className='flex flex-col mt-6'>
                         <label className='font-medium text-xl'>College Name</label>
                         <input
-                            className='mt-2 pt-2 flex justify-center items-center outline-none border-b-2'
+                            className='mt-2  flex justify-center items-center outline-none border-b-2'
                             placeholder='Enter Your College Name'
                             type='text'
                             required
@@ -75,7 +75,7 @@ const Authentication = () => {
                     <div className='flex flex-col mt-6'>
                         <label className='font-medium text-xl'>Phone Number</label>
                         <input
-                            className='mt-2 pt-2 flex justify-center items-center outline-none border-b-2'
+                            className='mt-2 flex justify-center items-center outline-none border-b-2'
                             placeholder='Enter Your Phone Number'
                             type='text'
                             required
@@ -85,7 +85,7 @@ const Authentication = () => {
                     </div>
 
                     <button
-                        className='p-1 border-2 min-w-full bg-violet-600 text-white mt-16'
+                        className='p-1 border-2 min-w-full bg-black text-white mt-8 rounded-md'
                     >
                         Join
                     </button>

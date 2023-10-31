@@ -1,16 +1,17 @@
 import React from 'react';
 import Authentication from './Authentication';
 import QuizSection from './QuizSection';
+import Navbar from './Navbar';
 
 const SqlQuiz = () => {
+  const userInfoFromLocalStorage = localStorage.getItem('teamName');
 
-  const  userInfoFromLocalStorage  = localStorage.getItem('teamName');
-
-  console.log('User Information: ' , userInfoFromLocalStorage);
+  console.log('User Information: ', userInfoFromLocalStorage);
 
   return (
     <div className='flex flex-col'>
-      {userInfoFromLocalStorage !== "" ? (
+      <Navbar /> 
+      {userInfoFromLocalStorage !== '' ? (
         <div>
           <Authentication />
         </div>

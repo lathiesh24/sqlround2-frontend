@@ -7,9 +7,12 @@ import Navbar from './components/Navbar';
 
 const App = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen font-montserrat">
+      <div>
+        <Navbar/>
+      </div>
       <Routes>
-       <Route exact path="/" element={<Navbar/>}/>
+       <Route exact path="/" element={<Authentication/>}/>
        <Route exact path="/sqlquiz" element={<QuizSection/>}/>
        <Route exact path="/thankyou" element={<ThankYou/>}/>
       </Routes>
