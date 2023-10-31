@@ -8,39 +8,39 @@ const QuizSection = () => {
   const questions = [ 
     {
       question: "Write an SQL query to find the position of the alphabet 'g' in the username column 'Debangana' from the Users table.",
-      images: ["Genres.csv,Books_Genres.csv"]
+      images: ["Genres.jpg,Books_Genres.jpg"]
     },
     {
       question: "Write an SQL query to print username and book title for which the return month is April 2023.",
-      images: ["Users.csv"]
+      images: ["Users.jpg"]
     },
     {
       question: "Write a SQL query to print the name from the Authors table after replacing ‘h’ with ‘H’.",
-      images: ["Books.csv,Users.csv"]
+      images: ["Books.jpg,Users.jpg"]
     },
     {
       question: "Write a query to find the books that are currently available (not checked out) in the library.",
-      images: ["Books.csv"]
+      images: ["Books.jpg"]
     },
     {
       question: "Determine the top 3 authors with the most books checked out, along with the number of checkouts for each author.",
-      images: ["Authors.csv"]
+      images: ["Authors.jpg"]
     },
     {
       question: "Identify the users who have a history of returning books late more than 80% of the time, and list their usernames.",
-      images: ["Users.csv, Checkouts.csv"]
+      images: ["Users.jpg, Checkouts.jpg"]
     },
     {
       question: "List all the books that are currently checked out and overdue, along with the names of the users who have them.",
-      images: ["Books.csv.jpg , Users.csv"]
+      images: ["Books.jpg.jpg , Users.jpg"]
     },
     {
       question: "Find the author whose books have been checked out the most in the last year.",
-      images: ["Authors.csv, Books.csv , Checkouts.csv"]
+      images: ["Authors.jpg, Books.jpg , Checkouts.jpg"]
     },
     {
       question: "Determine the top 3 book genres with the number of checkouts, considering books published in the last 3 years.",
-      images: ["Genres.csv,Books_Genres.csv,Checkouts.csv"]
+      images: ["Genres.jpg,Books_Genres.jpg,Checkouts.jpg"]
     }
   ];
   
