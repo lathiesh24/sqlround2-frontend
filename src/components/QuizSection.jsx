@@ -8,7 +8,7 @@ const QuizSection = () => {
   const questions = [ 
     {
       question: "Write an SQL query to find the position of the alphabet 'g' in the username column 'Debangana' from the Users table.",
-      images: ["Genres.png","Books_Genres.png"]
+      images: ["Genres.png","Book_Genres.png"]
     },
     {
       question: "Write an SQL query to print username and book title for which the return month is April 2023.",
@@ -40,7 +40,7 @@ const QuizSection = () => {
     },
     {
       question: "Determine the top 3 book genres with the number of checkouts, considering books published in the last 3 years.",
-      images: ["Genres.png","Books_Genres.png","Checkouts.png"]
+      images: ["Genres.png","Book_Genres.png","Checkouts.png"]
     }
   ];
   
@@ -109,20 +109,24 @@ if(confirmSubmission){
         <div className='mt-12 flex justify-center'>
           {questions[currentQuestionIndex].question}
         </div>
-        <div className='mt-12 mb-12 flex justify-center'>
-        <div>
-         {questions[currentQuestionIndex].images.map((image, index) => {
-            return (
-              <img key={index} src={image} alt={`Question Image`} />
-            )}
-         )}
-         </div>
+        <div className="mt-12 mb-12 flex justify-center">
+  <div className="flex">
+    {questions[currentQuestionIndex].images.map((image, index) => (
+      <img
+        key={index}
+        src={image}
+        alt={`Question Image`}
+        className="mr-4"
+      />
+    ))}
+  </div>
 </div>
+
         <div>
           <Editor
             height="500px"
             language="sql"
-            theme="vs-dark"
+            theme="vs-white"
             value={sqlQuery}
             onChange={(value) => setSqlQuery(value)}
             options={{
@@ -134,7 +138,7 @@ if(confirmSubmission){
             }}
           />
           <button
-            className="p-3 border min-w-32 bg-slate-600 text-white mt-4 font-medium"
+            className="p-3 border min-w-32 bg-white text-black mt-4 mb-32 justify-center items-center font-medium"
             onClick={handleNextQuestion}
           >
             Submit Query
