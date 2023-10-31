@@ -109,7 +109,7 @@ if(confirmSubmission){
         <div className='mt-12 flex justify-center'>
           {questions[currentQuestionIndex].question}
         </div>
-        <div className='mt-12 flex justify-center'>
+        <div className='mt-12 mb-12 flex justify-center'>
         <div>
          {questions[currentQuestionIndex].images.map((image, index) => {
             return (
