@@ -120,7 +120,7 @@ if(confirmSubmission){
       />
     ))}
   </div>
-</div>
+  </div>
 
         <div>
           <Editor
@@ -138,11 +138,12 @@ if(confirmSubmission){
             }}
           />
           <button
-            className="p-3 border min-w-32 bg-white text-black mt-4 mb-32 justify-center items-center font-medium"
-            onClick={handleNextQuestion}
-          >
-            Submit Query
-          </button>
+  className="p-3 border  bg-black text-white mt-4 mb-32 justify-center items-center font-medium"
+  onClick={handleNextQuestion}
+>
+  Submit Query
+</button>
+
         </div>
       </div>
     </div>
