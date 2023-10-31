@@ -5,20 +5,47 @@ import Editor from '@monaco-editor/react';
 
 const QuizSection = () => {
 
-    const questions = [ 
-        {
-            question: "Create the Library database with appropriate keys."
-          },
-          {
-            question: "List all the books that are currently checked out and overdue, along with the names of the users who have them."
-          },
-          {
-            question: "Find the author whose books have been checked out the most in the last year."
-          },
-          {
-            question: "Determine the top 3 book genres with the number of checkouts, considering books published in the last 3 years."
-          }
-    ]; 
+  const questions = [ 
+    {
+        question: "Write an SQL query to find the position of the alphabet 'g' in the username column 'Debangana' from the Users table.",
+        image: "image_url_2.jpg"
+    },
+    {
+        question: "Write an SQL query to print username and book title for which the return month is April 2023.",
+        image: "image_url_3.jpg"
+    },
+    {
+        question: "Write a SQL query to print the name from the Authors table after replacing ‘h’ with ‘H’.",
+        image: "image_url_4.jpg"
+    },
+    {
+        question: "Write a query to find the books that are currently available (not checked out) in the library.",
+        image: "image_url_5.jpg"
+    },
+    {
+        question: "Determine the top 3 authors with the most books checked out, along with the number of checkouts for each author.",
+        image: "image_url_6.jpg"
+    },
+    {
+        question: "Identify the users who have a history of returning books late more than 80% of the time, and list their usernames.",
+        image: "image_url_7.jpg"
+    },
+    {
+        question: "List all the books that are currently checked out and overdue, along with the names of the users who have them.",
+        image: "image_url_8.jpg"
+    },
+    {
+        question: "Find the author whose books have been checked out the most in the last year.",
+        image: "image_url_9.jpg"
+    },
+    {
+        question: "Determine the top 3 book genres with the number of checkouts, considering books published in the last 3 years.",
+        image: "image_url_10.jpg"
+    }
+];
+
+
+
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const navigate = useNavigate();
