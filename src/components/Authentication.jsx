@@ -52,7 +52,7 @@ const Authentication = () => {
                         <label className='font-medium text-xl'>Name</label>
                         <input
                             className='mt-2 pt-2 flex justify-center items-center outline-none border-b-2'
-                            placeholder='Enter Your Team Name'
+                            placeholder='Enter Your Name'
                             type='text'
                             required
                             value={teamName}
@@ -64,7 +64,7 @@ const Authentication = () => {
                         <label className='font-medium text-xl'>College Name</label>
                         <input
                             className='mt-2 pt-2 flex justify-center items-center outline-none border-b-2'
-                            placeholder='Enter Your Team Name'
+                            placeholder='Enter Your College Name'
                             type='text'
                             required
                             value={emailId}
@@ -76,7 +76,7 @@ const Authentication = () => {
                         <label className='font-medium text-xl'>Phone Number</label>
                         <input
                             className='mt-2 pt-2 flex justify-center items-center outline-none border-b-2'
-                            placeholder='Enter Your Team Name'
+                            placeholder='Enter Your Phone Number'
                             type='text'
                             required
                             value={phoneNumber}
