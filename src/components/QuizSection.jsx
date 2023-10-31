@@ -7,16 +7,21 @@ const QuizSection = () => {
 
   const questions = [ 
     {
-      question: "Write an SQL query to find the position of the alphabet 'g' in the username column 'Debangana' from the Users table.",
-      images: ["Genres.png","Book_Genres.png"]
+      question:"Write a query to list the genres of books that are currently available (not checked out).",
+      images:["Genres.png","Book_Genres.png"]
     },
+    
     {
-      question: "Write an SQL query to print username and book title for which the return month is April 2023.",
+      question: "Write an SQL query to find the position of the alphabet 'g' in the username column 'Debangana' from the Users table.",
       images: ["Users.png"]
     },
     {
-      question: "Write a SQL query to print the name from the Authors table after replacing ‘h’ with ‘H’.",
+      question: "Write an SQL query to print username and book title for which the return month is April 2023.",
       images: ["Books.png","Users.png"]
+    },
+    {
+      question: "Write a SQL query to print the name from the Authors table after replacing ‘h’ with ‘H’.",
+      images: ["Authors.png"] 
     },
     {
       question: "Write a query to find the books that are currently available (not checked out) in the library.",
