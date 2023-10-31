@@ -61,7 +61,7 @@ const QuizSection = () => {
     );
   };
 
-  const backendURL = 'https://sqlquizappround2server.onrender.com/api/teams/query-answers';
+  const backendURL = 'http://localhost:8181/api/teams/query-answers';
 
   const [sqlQuery, setSqlQuery] = useState('');
 

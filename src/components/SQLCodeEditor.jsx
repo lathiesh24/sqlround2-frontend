@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Editor from '@monaco-editor/react';
 
-const backendURL = 'https://sqlquizappround2server.onrender.com/api/teams/query-answers'; 
+const backendURL = 'http://localhost:8181/api/teams/query-answers'; 
 
 const SQLCodeEditor = () => {
   const [sqlQuery, setSqlQuery] = useState('');
