@@ -14,9 +14,9 @@ const Authentication = () => {
         e.preventDefault();
         if (teamName.trim() !== "") {
             const data = {
-                teamName: teamName,
+                teamName,
                 collegeName: emailId,
-                phoneNumber: phoneNumber
+                phoneNumber,
             };
 
             try {
