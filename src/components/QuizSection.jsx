@@ -43,6 +43,9 @@ const QuizSection = () => {
   const [allAnswers, setAllAnswers] = useState(Array(questions.length).fill('')); 
 
   const handleNextQuestion = async () => {
+
+    const confirmSubmission = window.confirm('Are you sure you want to submit your query? You cannot make any changes after this.');
+
     const updatedAnswers = [...allAnswers];
     updatedAnswers[currentQuestionIndex] = sqlQuery; 
 
@@ -53,21 +56,22 @@ const QuizSection = () => {
         sqlAnswer: sqlAnswer,
       })),
     };
-
-    try {
-      await axios.post(backendURL, postData);
-
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setSqlQuery(''); // Clear the SQL query
-        setAllAnswers(updatedAnswers); // Update all answers with the new one
-      } else {
-        alert('You have completed all questions.');
-        navigate('/thankyou');
-      }
-    } catch (error) {
-      console.error('Error saving SQL query:', error.message);
+if(confirmSubmission){
+  try {
+    await axios.post(backendURL, postData);
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSqlQuery(''); 
+      setAllAnswers(updatedAnswers); 
+    } else {
+      alert('You have completed all questions.');
+      navigate('/thankyou');
     }
+  } catch (error) {
+    console.error('Error saving SQL query:', error.message);
+  }
+}
+
   };
 
   return (
