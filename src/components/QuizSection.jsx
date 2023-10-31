@@ -100,7 +100,7 @@ if(confirmSubmission){
   };
 
   return (
-    <div>
+    <div >
       <div>
         <div><ProgressBar/></div>
         <div className='mt-12 flex justify-center'>
