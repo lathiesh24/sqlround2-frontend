@@ -14,13 +14,13 @@ const Authentication = () => {
         e.preventDefault();
         if (teamName.trim() !== "") {
             const data = {
-                teamName,
+                teamName: teamName,
                 collegeName: emailId,
-                phoneNumber,
+                phoneNumber: phoneNumber
             };
 
             try {
-                const response = await axios.post('http://localhost:8181/api/teams', data, {
+                const response = await axios.post('https://sqlquizappround2server.onrender.com/api/teams', data, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
